@@ -3,6 +3,8 @@ const { connection } = require("./db/db")
 const { router } = require("./router/router")
 const app=express()
 
+var cors = require('cors')
+app.use(cors())
 app.use(express.json())
 app.use("/test",router)
 app.get("/",(req,res)=>{

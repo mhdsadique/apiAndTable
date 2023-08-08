@@ -4,11 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="">
+    <style>
+         th, td {
+            border: 1px solid black;
+}
+    </style>
 </head>
 <body>
-    
+    <table  >
+        <tr>
+          <th>No</th>
+          <th>Name</th>
+          <th>Mark</th>
+        </tr>
+     <tbody id="tbody">
+     </tbody>
+      </table>
 </body>
 </html>
-
-<script src=""></script>
+<script >
+    const getapi=()=>{
+        fetch("http://localhost:8000/test")
+        .then(res=>res.json())
+        .then(res=>getfunction(res))
+        .catch(e=>console.log(e))
+    }
+    const getfunction=(data)=>{
+        data.forEach(el => {
+            let tr= document.createElement("tr")
+            let td=document.createElement("td")
+              td.innerText=el.number
+              let td1=document.createElement("td")
+              td1.innerText=el.name
+              let td2=document.createElement("td")
+              td2.innerText=el.mark
+              tr.append(td,td1,td2)
+              document.getElementById("tbody").append(tr)
+        });
+    }
+    getapi()
+</script>
